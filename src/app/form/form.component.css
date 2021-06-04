@@ -1,3 +1,25 @@
+.form-wrapper {
+    margin: 0 auto;
+    background: rgb(233, 226, 226);
+    height: 350px;
+    width: 600px;
+    margin-top: 20px;
+    text-align: center;
+    padding: 20px;
+}
+
+.form-group {
+    margin: 10px 0px;
+}
+
+.form {
+    text-align: left;
+}
+
+label {
+    margin: 0px 10px;
+}
+
 input.ng-touched.ng-invalid {
     border: solid red 2px;
 }

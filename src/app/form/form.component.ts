@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Tehnology } from '../Tehnologys';
+import { Hobby } from '../hobby';
 import { DataService } from '../data.service';
 
 @Component({
@@ -14,24 +15,29 @@ export class FormComponent implements OnInit {
   selectedObject: Tehnology;
   tehnologys: Tehnology[];
   periodOptions = [];
+  hobby: Hobby;
+  hobbys: Hobby[] = [];
 
   constructor(private dataService: DataService) { 
     this.formForDevelopers = new FormGroup({
-      developersName : new FormControl('Лілія', [
+      developersName : new FormControl('', [
         Validators.required,
         Validators.pattern('([a-zA-Z]).{2,}')
       ]),
-      developersSurname : new FormControl('Псарук', [
+      developersSurname : new FormControl('', [
         Validators.required,
         Validators.pattern('([a-zA-Z]).{2,}')
       ]),
-      selectTehnology: new FormControl('', Validators.required),
-      selectVersion: new FormControl('', Validators.required),
+      developersBirthday: new FormControl('', Validators.required),
       developersEmail : new FormControl('', [
         Validators.required,
         Validators.email,
         this.developerEmailValidator
-      ])
+      ]),
+      selectTehnology: new FormControl('', Validators.required),
+      selectVersion: new FormControl('', Validators.required),
+      hobbys: new FormControl('', Validators.required),
+      // hobbyDuration: new FormControl('', Validators.required)
     })
    }
 
@@ -41,6 +47,7 @@ export class FormComponent implements OnInit {
 
   send() {
     console.log(this.formForDevelopers);
+    this.hobbys.push(new Hobby(this.hobby.name, this.hobby.duration))
   }
 
   changeModelOfSelect(val):void {
