@@ -22,7 +22,8 @@ import {MatInputModule} from '@angular/material/input';
     MatDatepickerModule, MatInputModule,MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
   ],
   providers: [],
   bootstrap: [AppComponent]

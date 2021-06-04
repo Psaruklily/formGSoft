@@ -17,6 +17,12 @@
         </div>
     </div>
 
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
     <div class="form-group">
         <label>Email</label>
         <input class="form-control" name="email" formControlName="developersEmail">
@@ -26,11 +32,21 @@
         </div>
     </div>
 
-    <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+    <div class="form-group">
+        <label for="selectTehn">Choose a technology</label>
+        <select name="selectTehn" class="form-control" [(ngModel)]="selectedObject" formControlName="selectTehnology" (change)="changeModelOfSelect(selectedObject)">
+           <option *ngFor="let tehn of tehnologys" [ngValue]="tehn">
+            {{tehn.name}}
+           </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="test">Test</label>
+        <select name="test" [attr.disabled]="!selectedObject ? 'disabled' : null">
+            <option *ngFor="let ver of periodOptions" [value]="ver">{{ver}}</option>
+        </select>
+    </div>
 
     <div class="form-group">
         <button class="btn btn-default">
