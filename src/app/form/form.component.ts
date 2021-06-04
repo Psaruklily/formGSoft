@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Tehnology } from '../Tehnologys';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-form',
@@ -9,11 +11,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class FormComponent implements OnInit {
 
   formForDevelopers: FormGroup;
-  selectedObject: tehnology;
+  selectedObject: Tehnology;
+  tehnologys: Tehnology[];
   periodOptions = [];
-  tehnologys;
 
-  constructor() { 
+  constructor(private dataService: DataService) { 
     this.formForDevelopers = new FormGroup({
       developersName : new FormControl('Лілія', [
         Validators.required,
@@ -30,15 +32,10 @@ export class FormComponent implements OnInit {
         Validators.email
       ])
     })
-
-    this.tehnologys = [
-      {name: 'Angular', version: ['1.1.1', '1.2.1', '1.3.3']},
-      {name: 'React', version: ['2.1.2', '3.2.4', '4.3.1']},
-      {name: 'Vue', version: ['3.3.1', '5.2.1', '5.1.3']},
-    ]
    }
 
   ngOnInit(): void {
+    this.tehnologys = this.dataService.getTehnologys();
   }
 
   send() {
@@ -50,7 +47,4 @@ export class FormComponent implements OnInit {
   }
 }
 
-interface tehnology {
-  name: string;
-  version: string[]
-}
+
