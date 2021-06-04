@@ -29,7 +29,8 @@ export class FormComponent implements OnInit {
       selectVersion: new FormControl('', Validators.required),
       developersEmail : new FormControl('', [
         Validators.required,
-        Validators.email
+        Validators.email,
+        this.developerEmailValidator
       ])
     })
    }
@@ -44,6 +45,13 @@ export class FormComponent implements OnInit {
 
   changeModelOfSelect(val):void {
     this.periodOptions = val.version;
+  }
+
+  developerEmailValidator(control: FormControl): {[s: string]: boolean}|null {
+    if(control.value === 'test@test.test') {
+      return {'developersEmail': true}
+    }
+    return null;
   }
 }
 

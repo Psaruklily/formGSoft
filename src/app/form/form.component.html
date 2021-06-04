@@ -4,7 +4,7 @@
         <input class="form-control" name="name" formControlName="developersName">
 
         <div class="alert-danger" *ngIf="formForDevelopers.controls['developersName'].invalid && formForDevelopers.controls['developersName'].touched">
-            Вкажіть ім'я
+            Поле ім'я не валідне
         </div>
     </div>
 
@@ -13,7 +13,7 @@
         <input class="form-control" name="surname" formControlName="developersSurname">
 
         <div class="alert-danger" *ngIf="formForDevelopers.controls['developersSurname'].invalid && formForDevelopers.controls['developersSurname'].touched">
-            Вкажіть прізвище
+            Поле прізвище не валідне
         </div>
     </div>
 
@@ -25,10 +25,14 @@
 
     <div class="form-group">
         <label>Email</label>
-        <input class="form-control" name="email" formControlName="developersEmail">
+        <input class="form-control" name="email" formControlName="developersEmail" #developEmail>
 
-        <div class="alert-danger" *ngIf="formForDevelopers.controls['developersEmail'].invalid && formForDevelopers.controls['developersEmail'].touched">
-            Вкажіть email
+        <div class="alert-danger" *ngIf="formForDevelopers.controls['developersEmail'].invalid && formForDevelopers.controls['developersEmail'].touched && developEmail.value !== 'test@test.test'">
+            Поле email не валідне
+        </div>
+
+        <div class="alert-danger" *ngIf="developEmail.value === 'test@test.test'">
+            Цей емейл вже існує
         </div>
     </div>
 
